@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import AddTransactionForm from './components/AddTransactionForm'
-import TransactionList from './components/TransactionList';
+import { useState, useEffect } from "react";
+import AddTransactionForm from "./components/AddTransactionForm";
+import TransactionList from "./components/TransactionList";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Balance from './components/Balance';
+import Balance from "./components/Balance";
 function App() {
   const [listIncome, setListIncome] = useState(() => {
     const saved = localStorage.getItem("listIncome");
@@ -12,17 +12,23 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("listIncome", JSON.stringify(listIncome));
-  }, [listIncome]);    
+  }, [listIncome]);
 
-  return(
+  return (
     <div>
-    <AddTransactionForm listIncome = {listIncome} setListIncome = {setListIncome}></AddTransactionForm>
+      <AddTransactionForm
+        listIncome={listIncome}
+        setListIncome={setListIncome}
+      ></AddTransactionForm>
 
-    <TransactionList listIncome = {listIncome} setListIncome = {setListIncome}></TransactionList>
+      <TransactionList
+        listIncome={listIncome}
+        setListIncome={setListIncome}
+      ></TransactionList>
 
-    <Balance listIncome={listIncome} ></Balance>
+      <Balance listIncome={listIncome}></Balance>
 
-    <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={2000}
         hideProgressBar={false}
@@ -34,7 +40,7 @@ function App() {
         pauseOnHover
       />
     </div>
-  )  
+  );
 }
 
-export default App
+export default App;
