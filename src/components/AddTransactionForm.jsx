@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 
-function AddTransactionForm({istIncome, setListIncome}) {
+function AddTransactionForm({listIncome, setListIncome}) {
     const [description, setDescription] = useState("");
     const [amount, setAmount] = useState("");
     const [categories] = useState(["income", "expenditure"]);
@@ -13,6 +13,10 @@ function AddTransactionForm({istIncome, setListIncome}) {
         if(!description.trim()||!amount){
             toast.error("complete the process!");
             return;
+        }
+        if(amount < 0){
+          toast.error("can't type a negative number");
+          return;
         }
     const newIncome = { id: crypto.randomUUID(), description, amount, selectedCategory}; 
     setListIncome(prevListIncome => [...prevListIncome , newIncome])
